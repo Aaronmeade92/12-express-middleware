@@ -25,6 +25,10 @@ class Foods {
     return storage.get(id);
   }
 
+  static updateOne(criteria){
+    return storage.update(criteria);
+  }
+  
   static deleteOne(id) {
     return storage.delete(id);
   }
