@@ -26,13 +26,13 @@ describe('API module', () => {
 
   it('handles a good post request', (done) => {
 
-    let obj = {
+    let newFood = {
       title: 'corndog',
       content: 'this is a corndog',
     };
 
     superagent.post('http://localhost:3000/api/v1/food')
-      .send(obj)
+      .send(newFood)
       .then(response => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.text).id).toEqual(obj.title);
@@ -51,16 +51,15 @@ describe('API module', () => {
   });
   
   it('should delete entry when given specified id', (done) => {
-    let obj = {
+    let newFood = {
       title: 'sushi',
       content: 'this is a sushi',
     };
     superagent.post('http://localhost:3000/api/v1/food/')
-      .send(obj)
+      .send(newFood)
       .then(() => {
         superagent.delete('http://localhost:3000/api/v1/food/:id')
           .then(response => {
-            console.log(response.body);
             expect(response.status).toEqual(204);
           });
       });
